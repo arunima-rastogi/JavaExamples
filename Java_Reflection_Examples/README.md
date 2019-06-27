@@ -8,7 +8,7 @@ Java Reflection for Classes
 
 	1. Get Class Object		=>      Class<?> cls = Class.forName("package.class");
 
-	2. Get Super Class		=> 	Class<?> superClass = Class.forName("com.journaldev.reflection.ConcreteClass").getSuperclass();
+	2. Get Super Class		=> 	Class<?> superClass = Class.forName("package.class").getSuperclass();
 
 	3. Get Public Member Classes	=>	Class<?>[] classes = concreteClass.getClasses();
 						System.out.println(Arrays.toString(classes));
@@ -48,7 +48,7 @@ Java Reflection for Classes
 	15. Field Declaring Class	=>	try {
 							Field field = Class.forName("package.class").getField("interfaceInt");
 							Class<?> fieldClass = field.getDeclaringClass();
-							System.out.println(fieldClass.getCanonicalName()); //prints com.journaldev.reflection.BaseInterface
+							System.out.println(fieldClass.getCanonicalName()); 
 						} catch (NoSuchFieldException | SecurityException e) {
 							e.printStackTrace();
 						}
@@ -57,14 +57,14 @@ Java Reflection for Classes
 						Class<?> fieldType = field.getType();
 						System.out.println(fieldType.getCanonicalName()); //prints int	
 
-	17. Get/Set Public Field Value	=>	Field field = Class.forName("com.journaldev.reflection.ConcreteClass").getField("publicInt");
+	17. Get/Set Public Field Value	=>	Field field = Class.forName("package.class").getField("publicInt");
 						ActualClass obj = new ActualClass(5);
 						System.out.println(field.get(obj)); //prints 5
 						field.setInt(obj, 10); //setting field value to 10 in object
 						System.out.println(field.get(obj)); //prints 10
 
 
-	18. Get/Set Private Field Value	=>	Field privateField = Class.forName("com.journaldev.reflection.ConcreteClass").getDeclaredField("privateString");
+	18. Get/Set Private Field Value	=>	Field privateField = Class.forName("package.class").getDeclaredField("privateString");
 						//turning off access check with below method call
 						privateField.setAccessible(true);
 						ActualClass obj = new ActualClass(1);
