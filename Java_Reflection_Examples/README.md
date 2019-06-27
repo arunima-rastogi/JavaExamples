@@ -5,8 +5,11 @@ Java Reflection provides ability to inspect and modify the runtime behavior of a
 Common methods from Java Reflection APIs
 
 Java Reflection for Classes
+
 	1. Get Class Object		=>      Class<?> cls = Class.forName("package.class");
+
 	2. Get Super Class		=> 	Class<?> superClass = Class.forName("com.journaldev.reflection.ConcreteClass").getSuperclass();
+
 	3. Get Public Member Classes	=>	Class<?>[] classes = concreteClass.getClasses();
 						System.out.println(Arrays.toString(classes));
 	(representing all the public classes, interfaces and enums that are members of the class)
@@ -39,25 +42,29 @@ Java Reflection for Classes
 						System.out.println(Arrays.toString(publicFields));
 	13. Get All Annotations		=>	java.lang.annotation.Annotation[] annotations = Class.forName("package.class").getAnnotations();
 						System.out.println(Arrays.toString(annotations));
-Java Reflection for Fields
-	Get Public Field		=>	Field field = Class.forName("package.class").getField("fieldName");
-	Field Declaring Class		=>	try {
+
+	14. Get Public Field		=>	Field field = Class.forName("package.class").getField("fieldName");
+
+	15. Field Declaring Class	=>	try {
 							Field field = Class.forName("package.class").getField("interfaceInt");
 							Class<?> fieldClass = field.getDeclaringClass();
 							System.out.println(fieldClass.getCanonicalName()); //prints com.journaldev.reflection.BaseInterface
 						} catch (NoSuchFieldException | SecurityException e) {
 							e.printStackTrace();
 						}
-	Get Field Type			=>	Field field = Class.forName("package.class").getField("publicFieldOftype_int");
+
+	16. Get Field Type		=>	Field field = Class.forName("package.class").getField("publicFieldOftype_int");
 						Class<?> fieldType = field.getType();
 						System.out.println(fieldType.getCanonicalName()); //prints int	
-	Get/Set Public Field Value	=>	Field field = Class.forName("com.journaldev.reflection.ConcreteClass").getField("publicInt");
+
+	17. Get/Set Public Field Value	=>	Field field = Class.forName("com.journaldev.reflection.ConcreteClass").getField("publicInt");
 						ActualClass obj = new ActualClass(5);
 						System.out.println(field.get(obj)); //prints 5
 						field.setInt(obj, 10); //setting field value to 10 in object
 						System.out.println(field.get(obj)); //prints 10
 
-	Get/Set Private Field Value	=>	Field privateField = Class.forName("com.journaldev.reflection.ConcreteClass").getDeclaredField("privateString");
+
+	18. Get/Set Private Field Value	=>	Field privateField = Class.forName("com.journaldev.reflection.ConcreteClass").getDeclaredField("privateString");
 						//turning off access check with below method call
 						privateField.setAccessible(true);
 						ActualClass obj = new ActualClass(1);
@@ -66,8 +73,7 @@ Java Reflection for Fields
 						System.out.println(privateField.get(objTest)); //prints "private string updated"
 
 
-Java Reflection for Methods
-	Get Public Method		=>	Method method = Class.forName("java.util.HashMap").getMethod("put", Object.class, Object.class);
+	19. Get Public Method		=>	Method method = Class.forName("java.util.HashMap").getMethod("put", Object.class, Object.class);
 						//get method parameter types, prints "[class java.lang.Object, class java.lang.Object]"
 						System.out.println(Arrays.toString(method.getParameterTypes()));
 						//get method return type, return "class java.lang.Object", class reference for void
@@ -75,13 +81,13 @@ Java Reflection for Methods
 						//get method modifiers
 						System.out.println(Modifier.toString(method.getModifiers())); //prints "public"
 
-	Invoking Public Method		=>	Method method = Class.forName("java.util.HashMap").getMethod("put", Object.class, Object.class);
+	20. Invoking Public Method	=>	Method method = Class.forName("java.util.HashMap").getMethod("put", Object.class, Object.class);
 						Map<String, String> hm = new HashMap<>();
 						method.invoke(hm, "key", "value");
 						System.out.println(hm); // prints {key=value}
 
 
-	Invoking Private Methods	=>	//invoking private method
+	21. Invoking Private Methods	=>	//invoking private method
 						Method method = Class.forName("package.class").getDeclaredMethod("privateMethod", argument1.class, int.class);
 						method.setAccessible(true);
 						method.invoke(arg1, arg2); //invokes "privateMethod"
