@@ -25,7 +25,7 @@ public class UtilityGenerateKey {
 	private String algorithm = "AES";
 	private byte[] key = null;
 
-	public GenerateKey() {
+	public UtilityGenerateKey() {
 		this.key = GenKey();
 	}
 

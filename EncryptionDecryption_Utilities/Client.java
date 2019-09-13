@@ -5,7 +5,7 @@ package EncryptionDecryption_Utilities;
 public class Client {
 
 	public static void main(String[] args) {
-		GenerateKey obj = new GenerateKey();
+		UtilityGenerateKey obj = new UtilityGenerateKey();
 		String enc = obj.encrypt("Sheetal");
 		String dec = obj.decrypt(enc);
 
